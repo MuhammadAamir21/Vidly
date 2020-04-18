@@ -1,0 +1,12 @@
+﻿@*Directive to Specify the type of a model for this view*@
+@model Vidly.Models.Movie
+@{
+    //it will display Tittle in webpage
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*If we hit cltrl + f5 run from any view it will redirect it to that current view*@
+
+@*In order to access the model we pass in the controller*@
+<h2>@Model.Name</h2>
