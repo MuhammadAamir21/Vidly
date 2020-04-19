@@ -11,10 +11,21 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        // GET: Movies
-        public ActionResult Index()
+        // GET: Movies working with optinal paramters
+        public ActionResult Index(int? pageIndex, string sortBy)
         {
-            return View();
+            if (!pageIndex.HasValue)
+                pageIndex = 1;
+            if (string.IsNullOrWhiteSpace(sortBy))
+            {
+                sortBy = "Name";
+            }
+            //https://localhost:44331/Movies?pageIndex=2&sortBy=ReleaseDate
+            //Movies?pageIndex=2&sortBy=ReleaseDate
+            //working with 2 paramters
+            //It can not be enbeded in the url becuase we need to create a custom route that can handle 2 parameters
+
+            return Content(string.Format("pageIndex={0} & sortby={1}", pageIndex, sortBy));
         }
 
         // GET: Movies/Random
@@ -44,6 +55,19 @@ namespace Vidly.Controllers
             //This will compile application without opening the a new tabs
             //Meaning changes made in models and controller need to build to be shown in running application
             //So this will make it easy so no more running again and again while making changes
+        }
+
+        public ActionResult Edit(int movieId)
+        {
+            //https://localhost:44331/Movies/Edit/1
+            //Here the parameter is embeded in the URL
+            //here it will work for only default paramter name which is ID
+            //Which is define in the in our route
+
+            //https://localhost:44331/Movies/Edit?id=1
+            //paramter name should be same
+            //Mapped using the Qurey string
+            return Content("id= " + movieId);
         }
     }
 }
