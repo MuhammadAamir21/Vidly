@@ -9,6 +9,8 @@ using Vidly.Models;
 
 namespace Vidly.Controllers
 {
+    //CTRL + M, CTRL + O to collapse all code
+    //CTRL + M, CTRL + P Un-collapse
     public class MoviesController : Controller
     {
         // GET: Movies working with optinal paramters
@@ -68,6 +70,11 @@ namespace Vidly.Controllers
             //paramter name should be same
             //Mapped using the Qurey string
             return Content("id= " + movieId);
+        }
+
+        public ActionResult ByReleaseDate(int year, int month)
+        {
+            return Content(year + "/" + month);
         }
     }
 }
