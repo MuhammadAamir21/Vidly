@@ -72,6 +72,9 @@ namespace Vidly.Controllers
             return Content("id= " + movieId);
         }
 
+        //Attribute routing applied here just enable it
+        //in routeconfig add routes.MapMvcAttributeRoutes();
+        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);

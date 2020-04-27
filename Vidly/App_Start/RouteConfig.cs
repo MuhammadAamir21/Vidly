@@ -13,23 +13,28 @@ namespace Vidly
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //New and better way of creating custom route
+            //By using attribite routing
+            //this will enable attribute routing in mvc5
+            routes.MapMvcAttributeRoutes();
+
             //Defining custom route with 2 parameter
             //Here more specific routes comes first then generic once
 
-            routes.MapRoute(
-                "MoviesByReleaseDate",
-                "movies/released/{year}/{month}",
-                //Below is called a new annyomous object
-                new { controller = "Movies", action = "ByReleaseDate" },
-                //Adding contrain for year and month
-                //@ sign indicates varbatim string(literal string) for exact sting
-                //as back slash is a escape character
-                //\d indicates digits
-                //{num} indicates repeatitions
-                //Here we add a regular expression constains
-                new { year = @"\d{4}", month = @"\d{2}" }
-                //new { year = @"2015|2016", month = @"\d{2}" }
-                );
+            //routes.MapRoute(
+            //    "MoviesByReleaseDate",
+            //    "movies/released/{year}/{month}",
+            //    //Below is called a new annyomous object
+            //    new { controller = "Movies", action = "ByReleaseDate" },
+            //    //Adding contrain for year and month
+            //    //@ sign indicates varbatim string(literal string) for exact sting
+            //    //as back slash is a escape character
+            //    //\d indicates digits
+            //    //{num} indicates repeatitions
+            //    //Here we add a regular expression constains
+            //    new { year = @"\d{4}", month = @"\d{2}" }
+            //    //new { year = @"2015|2016", month = @"\d{2}" }
+            //    );
 
             routes.MapRoute(
                 name: "Default",
