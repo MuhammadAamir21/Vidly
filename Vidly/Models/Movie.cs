@@ -10,7 +10,7 @@ namespace Vidly.Models
         //short cut for properties is prop + tab
         //Property are use to represent state
 
-        //Control + Tab to quickly switch between active files or tabs in Visual studie
+        //Control + Tab to quickly switch between active files or tabs in Visual studio
         //Alt + Tab for windows
         public int Id { get; set; }
 
