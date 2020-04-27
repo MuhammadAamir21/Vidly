@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 //Add referneece to the application model to use them in controller
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -35,9 +36,44 @@ namespace Vidly.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Sherk!" };
+
+            var customers = new List<Customer>
+            {
+                //added new customer models as it is a list of customer after all
+                //in it contructor we initailize it
+                new Customer { Name=  "Customer 1" },
+                new Customer { Name = "Customer 2" }
+            };
+
+            var viewModel = new RandomMovieViewModel()
+            {
+                Customers = customers,
+                Movie = movie
+            };
+
+            return View(viewModel);
+
+            //passing data to view via viewdata,viewbag,model
+            //viewbag replaces viewdata in new version of mvc
+            //better approch is model
+
+            //ViewData["Movie"] = movie;
+            //date is added in viewbag on runtime it is dynamic type
+            //Have casting issue as well
+            //no compile time safety
+            //ViewBag.Movie = movie;
+
             //Here view is an helper method of class Controller which is reposible of creating
             // New ViewResult
+
+            //var viewResult = new ViewResult();
+            //viewResult.ViewData.Model = movie;
+
+            //is equivalent below view(movie)
+
             //return View(movie);
+            //return View();
+
             // return new viewresult();
 
             //return a plain text string
@@ -49,7 +85,7 @@ namespace Vidly.Controllers
             //Retun nothing
             //return new EmptyResult();
             // redirect to any actions takes action name controller and annoymous object optional to pass arguments
-            return RedirectToAction("Index", "Home", new { page = 1, sortBy = "Name" });
+            //return RedirectToAction("Index", "Home", new { page = 1, sortBy = "Name" });
 
             //Control + shift + B to bulid application
             //Ctrl + r to refresh papge
