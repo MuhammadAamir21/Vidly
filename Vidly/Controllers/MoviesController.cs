@@ -14,22 +14,38 @@ namespace Vidly.Controllers
     //CTRL + M, CTRL + P Un-collapse
     public class MoviesController : Controller
     {
-        // GET: Movies working with optinal paramters
-        public ActionResult Index(int? pageIndex, string sortBy)
+        public ActionResult Index()
         {
-            if (!pageIndex.HasValue)
-                pageIndex = 1;
-            if (string.IsNullOrWhiteSpace(sortBy))
-            {
-                sortBy = "Name";
-            }
-            //https://localhost:44331/Movies?pageIndex=2&sortBy=ReleaseDate
-            //Movies?pageIndex=2&sortBy=ReleaseDate
-            //working with 2 paramters
-            //It can not be enbeded in the url becuase we need to create a custom route that can handle 2 parameters
-
-            return Content(string.Format("pageIndex={0} & sortby={1}", pageIndex, sortBy));
+            var movies = GetMovies();
+            return View(movies);
         }
+
+        private IEnumerable<Movie> GetMovies()
+        {
+            return new List<Movie>
+            {
+                new Movie {Id=1, Name="Shrek"},
+                new Movie {Id=2, Name="Wall-e"},
+                new Movie {Id=3,Name="Pokemon"}
+            };
+        }
+
+        // GET: Movies working with optinal paramters
+        //public ActionResult Index(int? pageIndex, string sortBy)
+        //{
+        //    if (!pageIndex.HasValue)
+        //        pageIndex = 1;
+        //    if (string.IsNullOrWhiteSpace(sortBy))
+        //    {
+        //        sortBy = "Name";
+        //    }
+        //    //https://localhost:44331/Movies?pageIndex=2&sortBy=ReleaseDate
+        //    //Movies?pageIndex=2&sortBy=ReleaseDate
+        //    //working with 2 paramters
+        //    //It can not be enbeded in the url becuase we need to create a custom route that can handle 2 parameters
+
+        //    return Content(string.Format("pageIndex={0} & sortby={1}", pageIndex, sortBy));
+        //}
 
         // GET: Movies/Random
         // Here an action result is an base actionresult method which call a action result base on the view that is return
