@@ -217,9 +217,18 @@
     <Compile Include="Migrations\202004292000476_AddedBirthdateInCustomer.designer.cs">
       <DependentUpon>202004292000476_AddedBirthdateInCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004292028162_AddNewFieldsInMovie.cs" />
+    <Compile Include="Migrations\202004292028162_AddNewFieldsInMovie.designer.cs">
+      <DependentUpon>202004292028162_AddNewFieldsInMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004292032386_PopulateGenre.cs" />
+    <Compile Include="Migrations\202004292032386_PopulateGenre.designer.cs">
+      <DependentUpon>202004292032386_PopulateGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -259,6 +268,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -348,6 +358,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004292000476_AddedBirthdateInCustomer.resx">
       <DependentUpon>202004292000476_AddedBirthdateInCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004292028162_AddNewFieldsInMovie.resx">
+      <DependentUpon>202004292028162_AddNewFieldsInMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004292032386_PopulateGenre.resx">
+      <DependentUpon>202004292032386_PopulateGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
