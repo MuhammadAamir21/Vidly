@@ -25,7 +25,7 @@ else
                 <tr>
                     <td>
                         @*Name,Action,Controller,Routevalue/Paramter,addition html attribute*@
-                        @Html.ActionLink(@customer.Name, "Details", "Customers", new { id = customer.Id }, null)
+                        @Html.ActionLink(@customer.Name, "Edit", "Customers", new { id = customer.Id }, null)
                     </td>
                     @*here we can see that we can access the membership model with the help of Navigation Property in customer*@
                     @*just remember to include the MembershipType or any other navigation propety along side the main model*@
