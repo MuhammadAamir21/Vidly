@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,7 +38,12 @@ namespace Vidly.Controllers
 
             //here tolist make it to execute qurrey
             //otherwise when data needed to be fetch it will querry at that time
-            var customers = _context.Customers.ToList();
+            //using System.Data.Entity; add this to use beacuse include is an extention method
+            // and it is define in a different name space
+            //we need to load the MembershipType along with customer so do this
+            //other wise entity framwork will only load the customers
+            //This is called Eager loading
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             return View(customers);
         }

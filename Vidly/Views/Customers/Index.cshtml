@@ -16,6 +16,7 @@ else
         <thead>
             <tr>
                 <th>Customer</th>
+                <th>Discount Rate</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,9 @@ else
                         @*Name,Action,Controller,Routevalue/Paramter,addition html attribute*@
                         @Html.ActionLink(@customer.Name, "Details", "Customers", new { id = customer.Id }, null)
                     </td>
+                    @*here we can see that we can access the membership model with the help of Navigation Property in customer*@
+                    @*just remember to include the MembershipType or any other navigation propety along side the main model*@
+                    <td>@customer.MembershipType.DiscountRate%</td>
                 </tr>
             }
         </tbody>
