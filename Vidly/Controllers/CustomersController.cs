@@ -9,10 +9,36 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
+        private ApplicationDbContext _context;
+
+        //ctor + tab shortcut for conasturcture
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        //_context is type disposible object so it need to be dispose properly
+        //here we override the base dispose method to dispose our _context
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = GetCustomers();
+            //via hardcode data
+            //var customers = GetCustomers();
+
+            //Here the entity framwork will only excute qurrey
+            //While iterating it will not qurrey it like this
+            //It is called deferred Execution
+            //var customers = _context.Customers;
+
+            //here tolist make it to execute qurrey
+            //otherwise when data needed to be fetch it will querry at that time
+            var customers = _context.Customers.ToList();
+
             return View(customers);
         }
 
@@ -36,7 +62,9 @@ namespace Vidly.Controllers
             //        FirstOrDefault returns the first record
 
             //Checks if customer exist in the list
-            var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+            //var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
             {
@@ -46,13 +74,13 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
-        private IEnumerable<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer{Id=1 , Name = "Ali"},
-                new Customer{Id=2 , Name = "Aamir"}
-            };
-        }
+        //private IEnumerable<Customer> GetCustomers()
+        //{
+        //    return new List<Customer>
+        //    {
+        //        new Customer{Id=1 , Name = "Ali"},
+        //        new Customer{Id=2 , Name = "Aamir"}
+        //    };
+        //}
     }
 }
