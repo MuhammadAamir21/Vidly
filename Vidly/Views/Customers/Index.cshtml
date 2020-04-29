@@ -16,7 +16,7 @@ else
         <thead>
             <tr>
                 <th>Customer</th>
-                <th>Discount Rate</th>
+                <th>Membership Type</th>
             </tr>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@ else
                     </td>
                     @*here we can see that we can access the membership model with the help of Navigation Property in customer*@
                     @*just remember to include the MembershipType or any other navigation propety along side the main model*@
-                    <td>@customer.MembershipType.DiscountRate%</td>
+                    <td>@customer.MembershipType.Name</td>
                 </tr>
             }
         </tbody>

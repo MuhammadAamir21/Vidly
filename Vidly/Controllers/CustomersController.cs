@@ -12,7 +12,7 @@ namespace Vidly.Controllers
     {
         private ApplicationDbContext _context;
 
-        //ctor + tab shortcut for conasturcture
+        //ctor + tab shortcut for consturcture
         public CustomersController()
         {
             _context = new ApplicationDbContext();
