@@ -24,6 +24,7 @@ namespace Vidly.Models
         //Navigation Property to load object and it related object togather
         public MembershipType MembershipType { get; set; }
 
+        [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
     }
 }
