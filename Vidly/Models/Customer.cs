@@ -10,5 +10,12 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public bool IsSubscribedToNewsletter { get; set; }
+
+        //Navigation Property to load object and it related object togather
+        public MembershipType MembershipType { get; set; }
+
+        public byte MembershipTypeId { get; set; }
     }
 }
