@@ -31,6 +31,9 @@ namespace Vidly.Controllers
             var MembershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel
             {
+                //intializing customer to remove require id error message
+
+                Customer = new Customer(),
                 MembershipTypes = MembershipTypes
             };
             return View(viewModel);
