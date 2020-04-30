@@ -40,6 +40,9 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        //Here it prevent hacker from sending post request on customer behave
+        //CSRF (Cross-site Request Forgery)
         public ActionResult Save(Customer customer)
         {
             if (!ModelState.IsValid)
