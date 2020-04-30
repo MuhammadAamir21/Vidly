@@ -12,7 +12,11 @@ namespace Vidly.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var customer = (Customer)validationContext.ObjectInstance;
-            if (customer.MembershipTypeId == 0 || customer.MembershipTypeId == 1)
+            //The below code is unreadable as no body knows what 0 and 1 is
+            //It is better to aviod magic number
+            //This way code becomes much easier to read and maintain
+            //if (customer.MembershipTypeId == 0 || customer.MembershipTypeId == 1)
+            if (customer.MembershipTypeId == MembershipType.Unknown || customer.MembershipTypeId == MembershipType.PayAsYouGo)
             {
                 return ValidationResult.Success;
             }

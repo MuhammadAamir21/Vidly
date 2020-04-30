@@ -18,5 +18,11 @@ namespace Vidly.Models
         public byte DurationInMonths { get; set; }
 
         public byte DiscountRate { get; set; }
+
+        //To make code more readable
+        //We can use enum as well but require additonal type convertion
+        public static readonly byte Unknown = 0;
+
+        public static readonly byte PayAsYouGo = 1;
     }
 }
