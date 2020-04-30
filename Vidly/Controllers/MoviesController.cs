@@ -57,11 +57,40 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
         public ActionResult Save(Movie movie)
         {
-            _context.Movies.Add(movie);
+            if (movie.Id == 0)
+            {
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieDb = _context.Movies.Single(m => m.Id == movie.Id);
+                movieDb.Name = movie.Name;
+                movieDb.ReleaseDate = movie.ReleaseDate;
+                movieDb.GenreId = movie.GenreId;
+                movieDb.NumberInStock = movie.NumberInStock;
+            }
+
             _context.SaveChanges();
             return RedirectToAction("Index", "Movies");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("MovieForm", viewModel);
         }
 
         //private IEnumerable<Movie> GetMovies()
@@ -155,18 +184,18 @@ namespace Vidly.Controllers
             //So this will make it easy so no more running again and again while making changes
         }
 
-        public ActionResult Edit(int movieId)
-        {
-            //https://localhost:44331/Movies/Edit/1
-            //Here the parameter is embeded in the URL
-            //here it will work for only default paramter name which is ID
-            //Which is define in the in our route
+        //public ActionResult Edit(int movieId)
+        //{
+        //    //https://localhost:44331/Movies/Edit/1
+        //    //Here the parameter is embeded in the URL
+        //    //here it will work for only default paramter name which is ID
+        //    //Which is define in the in our route
 
-            //https://localhost:44331/Movies/Edit?id=1
-            //paramter name should be same
-            //Mapped using the Qurey string
-            return Content("id= " + movieId);
-        }
+        //    //https://localhost:44331/Movies/Edit?id=1
+        //    //paramter name should be same
+        //    //Mapped using the Qurey string
+        //    return Content("id= " + movieId);
+        //}
 
         //Attribute routing applied here just enable it
         //in routeconfig add routes.MapMvcAttributeRoutes();
