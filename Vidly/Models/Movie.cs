@@ -13,6 +13,7 @@ namespace Vidly.Models
 
         //Control + Tab to quickly switch between active files or tabs in Visual studio
         //Alt + Tab for windows
+        [Required]
         public int Id { get; set; }
 
         public Genre Genre { get; set; }
