@@ -15,7 +15,14 @@ namespace Vidly.App_Start
         {
             //Mapping convention base on propteries name
             Mapper.CreateMap<Customer, CustomerDto>();
-            Mapper.CreateMap<CustomerDto, Customer>();
+            Mapper.CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore());
+
+            //Mapping Profile For Movie to MovieDto
+
+            //Source to destination
+            Mapper.CreateMap<Movie, MovieDto>();
+            //Ignoring mapping of id becaue it is a primay key can't be change
+            Mapper.CreateMap<MovieDto, Movie>().ForMember(m => m.Id, opt => opt.Ignore());
         }
     }
 }

@@ -20,9 +20,11 @@ namespace Vidly.Controllers.Api
         }
 
         //Get /api/Customers
-        public IEnumerable<CustomerDto> GetCustomers()
+        //public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customerDtos = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            return Ok(customerDtos);
         }
 
         //Get /api/Customers/1
@@ -67,16 +69,18 @@ namespace Vidly.Controllers.Api
 
         //Put /api/Customers/1
         [HttpPut]
-        public void UpdateCustomer(int id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                //throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             var customerinDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerinDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                //throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             Mapper.Map(customerDto, customerinDb);
@@ -86,19 +90,24 @@ namespace Vidly.Controllers.Api
             //customerinDb.MembershipTypeId = customerDto.MembershipTypeId;
             //customerinDb.IsSubscribedToNewsletter = customerDto.IsSubscribedToNewsletter;
             _context.SaveChanges();
+
+            return Ok();
         }
 
         //Delete /api/Customer/1
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerinDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerinDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                //throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
             _context.Customers.Remove(customerinDb);
             _context.SaveChanges();
+
+            return Ok();
         }
     }
 }
