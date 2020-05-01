@@ -7,6 +7,11 @@ using Vidly.Models;
 
 namespace Vidly.Dtos
 {
+    //Since the Customer model is our domain model
+    //And it is called the implementaion details which change frequently
+    //So due to those changes arries the api of might break
+    //Hacker can pass additional data as well to the domain object
+    //To prevent this from happing we create a Dto(Data Transfer Object) as a contract of this api
     public class CustomerDto
     {
         public int Id { get; set; }
