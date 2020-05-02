@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vidly.Models.Customer>
+﻿@*@model IEnumerable<Vidly.Models.Customer>*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,44 +6,74 @@
 
 <h2>Customers</h2>
 @*model.any check contain any customer*@
-@if (!Model.Any())
-{
-    <p>We don't have any customer yet.</p>
-}
-else
-{
-    <table id="customers" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Customer</th>
-                <th>Membership Type</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
+@*@if (!Model.Any())
+    {
+        <p>We don't have any customer yet.</p>
+    }*@
+@*else
+    {*@
+<table id="customers" class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Membership Type</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    @*<tbody>
             @foreach (var customer in Model)
             {
                 <tr>
                     <td>
-                        @*Name,Action,Controller,Routevalue/Paramter,addition html attribute*@
+                        Name,Action,Controller,Routevalue/Paramter,addition html attribute
                         @Html.ActionLink(@customer.Name, "Edit", "Customers", new { id = customer.Id }, null)
                     </td>
-                    @*here we can see that we can access the membership model with the help of Navigation Property in customer*@
-                    @*just remember to include the MembershipType or any other navigation propety along side the main model*@
+                    here we can see that we can access the membership model with the help of Navigation Property in customer
+                    just remember to include the MembershipType or any other navigation propety along side the main model
                     <td>@customer.MembershipType.Name</td>
                     <td>
                         <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
                     </td>
                 </tr>
             }
-        </tbody>
-    </table>
-}
+        </tbody>*@
+</table>
+@*}*@
 
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("#customers").DataTable();
+            //from server side
+            //$("#customers").DataTable();
+
+            //getting customer list form customer api
+            $("#customers").DataTable({
+                ajax: {
+                    url: "api/customers",
+                    dataSrc: "",
+                },
+
+                columns: [
+                    {
+                        data: "name",
+                        //data,type,row
+                        render: function (data, type, customer) {
+                            return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button data-customer-id=" + data + " class='btn-link js-delete'>Delete</button>";
+                        }
+                    }
+
+                ]
+
+            });
 
             //Here we have an issue
             //right now we have multiple click handler on every button
