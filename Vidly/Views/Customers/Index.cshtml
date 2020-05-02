@@ -12,11 +12,12 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="customers" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Customer</th>
                 <th>Membership Type</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -30,8 +31,33 @@ else
                     @*here we can see that we can access the membership model with the help of Navigation Property in customer*@
                     @*just remember to include the MembershipType or any other navigation propety along side the main model*@
                     <td>@customer.MembershipType.Name</td>
+                    <td>
+                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#customers .js-delete").on("click", function () {
+                //Here this means we are in the button section
+                var button = $(this);
+                //confirm shows a website message
+                if (confirm("Are you sure you want to delete this customer?")) {
+                    $.ajax({
+                        url: "api/customers/" + button.attr("data-customer-id"),
+                        method: "DELETE",
+                        success: function () {
+                            button.parents("tr").remove();
+
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 }
