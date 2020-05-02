@@ -23,6 +23,8 @@ namespace Vidly.App_Start
             Mapper.CreateMap<Movie, MovieDto>();
             //Ignoring mapping of id becaue it is a primay key can't be change
             Mapper.CreateMap<MovieDto, Movie>().ForMember(m => m.Id, opt => opt.Ignore());
+
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
         }
     }
 }
