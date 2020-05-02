@@ -11,6 +11,8 @@ namespace Vidly.Dtos
         [Required]
         public int Id { get; set; }
 
+        public GenreDto Genre { get; set; }
+
         [Required]
         public Byte GenreId { get; set; }
 

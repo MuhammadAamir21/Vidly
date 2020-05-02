@@ -97,8 +97,9 @@
                             url: "api/customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
+                                //To remove the record of customer of table as well
                                 table.row(button.parents("tr")).remove().draw();
-                                button.parents("tr").remove();
+                                //button.parents("tr").remove();
 
                             }
                         });
