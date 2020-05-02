@@ -43,7 +43,17 @@ else
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("#customers .js-delete").on("click", function () {
+            //Here we have an issue
+            //right now we have multiple click handler on every button
+            //meaning select table with name customer where class = .js-delete
+            //Which is not effective
+
+            //$("#customers .js-delete").on("click", function () {
+
+            //here we select the table customer with a filter js-delete
+            //This way we have a single handler for all delete buttons
+            $("#customers").on("click", ".js-delete", function () {
+
                 //Here this means we are in the button section
                 var button = $(this);
 
