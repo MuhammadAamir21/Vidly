@@ -43,6 +43,8 @@ else
 @section scripts{
     <script>
         $(document).ready(function () {
+            $("#customers").DataTable();
+
             //Here we have an issue
             //right now we have multiple click handler on every button
             //meaning select table with name customer where class = .js-delete
