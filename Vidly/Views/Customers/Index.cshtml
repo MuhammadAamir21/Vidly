@@ -47,7 +47,7 @@
             //$("#customers").DataTable();
 
             //getting customer list form customer api
-            $("#customers").DataTable({
+            var table = $("#customers").DataTable({
                 ajax: {
                     url: "api/customers",
                     dataSrc: "",
@@ -97,6 +97,7 @@
                             url: "api/customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
+                                table.row(button.parents("tr")).remove().draw();
                                 button.parents("tr").remove();
 
                             }
