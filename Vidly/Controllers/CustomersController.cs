@@ -122,7 +122,7 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View("List");
         }
 
         public ActionResult Details(int id)
