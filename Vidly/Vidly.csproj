@@ -238,6 +238,10 @@
     <Compile Include="Migrations\202004301052430_MakeDateAddedOptional.designer.cs">
       <DependentUpon>202004301052430_MakeDateAddedOptional.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005031135580_SeedsUsers.cs" />
+    <Compile Include="Migrations\202005031135580_SeedsUsers.designer.cs">
+      <DependentUpon>202005031135580_SeedsUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -561,6 +565,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004301052430_MakeDateAddedOptional.resx">
       <DependentUpon>202004301052430_MakeDateAddedOptional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005031135580_SeedsUsers.resx">
+      <DependentUpon>202005031135580_SeedsUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
