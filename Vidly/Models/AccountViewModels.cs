@@ -8,6 +8,12 @@ namespace Vidly.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        //New property via social login
+        [Required]
+        [StringLength(255)]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -65,6 +71,7 @@ namespace Vidly.Models
 
     public class RegisterViewModel
     {
+        //Add new property for viewmodel as well
         [Required]
         [StringLength(255)]
         [Display(Name = "Driving License")]

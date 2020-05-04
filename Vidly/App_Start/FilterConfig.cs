@@ -12,6 +12,9 @@ namespace Vidly
             //Restric access of anonymous user
             //Equivalent to applying authorize attribute at every controller
             filters.Add(new AuthorizeAttribute());
+
+            //So this will allow our application to be access through a secure channel
+            filters.Add(new RequireHttpsAttribute());
         }
     }
 }
