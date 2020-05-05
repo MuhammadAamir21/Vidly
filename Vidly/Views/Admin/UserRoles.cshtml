@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manage Users</h2>
+
+@using (Html.BeginForm("CreateUserRoles", "Admin"))
+{
+
+    @Html.ValidationSummary(true, "Please fix the following")
+    <div class="form-group">
+        @Html.Label("RoleName")
+        @Html.TextBox("RoleName", null, new { @class = "form-control" })
+        @Html.ValidationMessage("RoleName")
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Add Roles</button>
+    </div>
+
+}
+
+<table id="Roles" class="table table-bordered table-hover">
+    <thead>
+
+        <tr>
+
+            <th>Roles</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var role in Model)
+        {
+            <tr>
+
+                <td>
+                    @role.Name
+                </td>
+                <td>
+                    @Html.ActionLink("Add Roles", "MovieForm", "Movies", new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Add Roles", "MovieForm", "Movies", new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("#Roles").DataTable();
+
+        });
+    </script>
+}

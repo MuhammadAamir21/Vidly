@@ -6,6 +6,9 @@ using System.Data.Entity;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
 
 namespace Vidly.Controllers
 {
@@ -41,6 +44,21 @@ namespace Vidly.Controllers
                                   });
 
             return View(usersWithRoles);
+        }
+
+        public async Task<ActionResult> CreateUserRoles(string RoleName)
+        {
+            var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+            await roleManager.CreateAsync(new IdentityRole(RoleName));
+
+            return RedirectToAction("UserRoles", "Admin");
+        }
+
+        public ActionResult UserRoles()
+        {
+            var Roles = _context.Roles.ToList();
+            return View(Roles);
         }
 
         public ActionResult Indesx()
