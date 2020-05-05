@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Vidly.Controllers
 {
@@ -12,11 +14,19 @@ namespace Vidly.Controllers
     //[Authorize]
     public class HomeController : Controller
     {
+        //Here we can cache our page either or client or server
+        //application duration of cache data
+        //cache action of different action as well
+        // VaryByParam = "*" any paramter will be cache
+        //like customers/1...10
+        [OutputCache(Duration = 50, Location = OutputCacheLocation.Server, VaryByParam = "*")]
         public ActionResult Index()
         {
             return View();
         }
 
+        //Disable cache on a certain action
+        [OutputCache(Duration = 0, VaryByParam = "*", NoStore = true)]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
